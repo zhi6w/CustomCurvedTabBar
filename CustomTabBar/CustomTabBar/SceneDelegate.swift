@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -30,8 +30,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let secondNav = UINavigationController(rootViewController: secondVC)
         secondNav.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
         
+        let secondVC1 = SecondViewController()
+        secondVC1.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 2)
+        
+        let secondVC2 = SecondViewController()
+        secondVC2.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 3)
+        
         let tabBarController = CurvedTabBarController(nibName: nil, bundle: nil)
-        tabBarController.setViewControllers([mainNav, secondNav], animated: false)
+        tabBarController.setViewControllers([mainNav, secondNav, secondVC1, secondVC2], animated: false)
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()

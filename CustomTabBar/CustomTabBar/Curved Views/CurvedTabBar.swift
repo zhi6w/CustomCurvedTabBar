@@ -113,11 +113,13 @@ extension CurvedTabBar {
     
     private func layoutCenterButton() {
         
-        let centerImage = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: bounds.height / 2 - centerButtonBottomOffset, weight: .medium))?.withRenderingMode(.alwaysOriginal).withTintColor(.systemBackground)
+        let centerImage = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: (bounds.height - safeAreaInsets.bottom) / 2 - centerButtonBottomOffset, weight: .medium))?.withRenderingMode(.alwaysOriginal).withTintColor(.systemBackground)
         centerButton.setImage(centerImage, for: .normal)
                         
-        centerButtonWidthLayoutConstraint?.constant = bounds.height - centerButtonBottomOffset
-        centerButtonHeightLayoutConstraint?.constant = bounds.height - centerButtonBottomOffset
+        // bounds.height - safeAreaInsets.bottom: 减去底部安全区域，防止按钮显示过大不协调。
+        let sizeConstant = bounds.height - safeAreaInsets.bottom - centerButtonBottomOffset
+        centerButtonWidthLayoutConstraint?.constant = sizeConstant
+        centerButtonHeightLayoutConstraint?.constant = sizeConstant
         
         centerButton.layer.cornerRadius = centerButton.bounds.height / 2
     }
@@ -153,7 +155,8 @@ extension CurvedTabBar {
     
     private func createPath(style: ShapeLayerStyle) -> CGPath {
         
-        let height: CGFloat = bounds.height / 2
+        // bounds.height - safeAreaInsets.bottom: 减去底部安全区域，防止弧度显示过大不协调。
+        let height: CGFloat = (bounds.height - safeAreaInsets.bottom) / 2
         let path = UIBezierPath()
         let centerWidth = frame.width / 2
         let shadowHeight = 1 / UIScreen.main.scale
