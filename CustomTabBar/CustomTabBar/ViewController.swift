@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
         setupInterface()
         
-        (tabBarController as? CurvedTabBarController)?.curvedTabBar?.centerActionHandler = { (_) in
+        curvedTabBarController?.curvedTabBar?.centerActionHandler = { (_) in
             print("tapped")
         }
     }

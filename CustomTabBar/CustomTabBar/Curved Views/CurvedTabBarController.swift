@@ -73,3 +73,46 @@ open class CurvedTabBarController: UITabBarController {
 
 }
 
+extension UIViewController {
+
+    open var curvedTabBarController: CurvedTabBarController? {
+        return tabBarController as? CurvedTabBarController
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
